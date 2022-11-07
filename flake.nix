@@ -1,5 +1,5 @@
 {
-  description = "Optioned Cardano Transaction Lib backed by nix setup";
+  description = "Optioned Cardano Transaction Lib backed by nix";
 
   inputs =
     {
