@@ -30,6 +30,8 @@
                 [
                   #cardano-transaction-lib
                   affjax
+                  bigints
+                  #toppokki
                 ];
               # FFI dependencies
               # foreign.Main.node_modules = [];
