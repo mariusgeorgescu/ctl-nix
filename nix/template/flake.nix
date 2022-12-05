@@ -13,7 +13,7 @@
       let
         purs-nix = inputs.purs-nix {
           inherit system;
-          overlays = inputs.la-ctl.lib;
+          overlays = [ inputs.la-ctl.lib ];
         };
         ps = purs-nix.purs
           {
