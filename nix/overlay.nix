@@ -1,3 +1,4 @@
+# this is a purs-nix overlay (not nixpkgs overlay)
 package-set-repo: ctl: pkgs: final: prev:
 let
   b = builtins;

@@ -2,6 +2,7 @@
   description = "la-ctl";
 
   inputs = {
+    #TODO: copy this to template at CI/release and change the path
     la-ctl.url = path:../../.;
     nixpkgs.follows = "la-ctl/nixpkgs";
     purs-nix.url = "github:purs-nix/purs-nix";
@@ -13,7 +14,7 @@
       let
         purs-nix = inputs.purs-nix {
           inherit system;
-          overlays = inputs.la-ctl.overlays.purs-nix;
+          overlays = inputs.la-ctl.lib;
         };
         ps = purs-nix.purs
           {
@@ -21,7 +22,7 @@
             dir = ./.;
             # Dependencies
             dependencies =
-              with purs-nix.ps-pkgs.la-ctl;
+              with purs-nix.ps-pkgs;
               [
                 cardano-transaction-lib
               ];

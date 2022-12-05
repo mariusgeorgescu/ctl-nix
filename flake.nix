@@ -27,9 +27,10 @@
         {
           # warning: unknown flake output 'lib' is a know issue
           # it will be eventually standard on nix
-          lib = import ./nix/purs-nix.nix
+          lib = import ./nix/overlay.nix
             inputs.package-set-repo
-            inputs.ctl;
+            inputs.ctl
+            pkgs;
           #checks.template = (inputs.get-flake ./nix/template).checks.${system};
         });
 }
