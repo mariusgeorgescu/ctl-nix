@@ -16,20 +16,20 @@
 
   outputs = { self, utils, ... }@inputs:
     let
-      overlays = {
-        purs-nix = import ./nix/purs-nix.nix
-          inputs.package-set-repo
-          inputs.ctl;
-      };
       templates.default.path = ./nix/template;
       templates.default.description = "la-ctl template";
     in
-    { inherit templates overlays; } // utils.apply-systems
+    { inherit templates; } // utils.apply-systems
       { inherit inputs; }
       ({ pkgs, system, ... }:
         let
         in
         {
+          # warning: unknown flake output 'lib' is a know issue
+          # it will be eventually standard on nix
+          lib = import ./nix/purs-nix.nix
+            inputs.package-set-repo
+            inputs.ctl;
           #checks.template = (inputs.get-flake ./nix/template).checks.${system};
         });
 }
