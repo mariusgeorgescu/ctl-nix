@@ -2,8 +2,7 @@
   description = "la-ctl";
 
   inputs = {
-    #TODO: copy this to template at CI/release and change the path
-    la-ctl.url = path:../../.;
+    la-ctl.url = "github:LovelaceAcademy/la-ctl";
     nixpkgs.follows = "la-ctl/nixpkgs";
     purs-nix.url = "github:purs-nix/purs-nix";
     utils.url = "github:ursi/flake-utils";

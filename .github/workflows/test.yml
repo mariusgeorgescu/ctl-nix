@@ -14,11 +14,4 @@ jobs:
       with:
         name: klarkc
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: |
-        nix flake check
-        # TODO: move the template test to flake check
-        mkdir .test-project
-        cd .test-project
-        git init
-        nix flake init -t ..
-        nix flake check
+    - run: ./.github/workflows/test.sh

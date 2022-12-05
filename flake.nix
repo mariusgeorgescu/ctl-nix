@@ -34,5 +34,3 @@
           #checks.template = (inputs.get-flake ./nix/template).checks.${system};
         });
 }
-
-
