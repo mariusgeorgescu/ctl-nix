@@ -1,6 +1,5 @@
 # this is a purs-nix overlay (not nixpkgs overlay)
-package-set-repo: ctl: pkgs: self: super:
-with self; {
+package-set-repo: ctl: pkgs: self: super: with self; {
   # additional packages for CTL
   # TODO: automate the set generation using CTL input
   # pinned to match ctl arg

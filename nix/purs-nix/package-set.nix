@@ -9,15 +9,28 @@ in
 l.pipe package-set [
   (l.mapAttrsToList (n: v: { inherit n v; }))
   (b.foldl'
-    (acc: { n, v }: acc // {
-      ${n} = {
-        src.git = { inherit (v) repo rev; };
-        info = {
-          version = b.substring 1 (b.stringLength v.version) v.version;
-          dependencies = b.foldl' (acc': d: acc' + d + " ") "" v.dependencies;
+    (acc: { n, v }:
+      let
+        repo = b.fetchGit
+          {
+            url = v.repo;
+            ref = "refs/tags/${v.version}";
+          };
+      in
+      acc // {
+        ${n} = {
+          src.git = {
+            repo = v.repo;
+            rev = repo.rev;
+          };
+          info = {
+            version = b.substring 1 (b.stringLength v.version) v.version;
+            dependencies = [ ];
+            #FIXME: missing dependencies
+            #dependencies = b.foldl' (acc': d: acc' + d + " ") "" v.dependencies;
+          };
         };
-      };
-    })
+      })
     { }
   )
 ]

@@ -32,6 +32,14 @@
                   affjax
                   bigints
                   #toppokki
+                  #medea
+                  #mote
+                  #lattice 
+                  #properties 
+                  #sequences 
+                  #aeson-helpers
+                  #aeson
+                  either
                 ];
               # FFI dependencies
               # foreign.Main.node_modules = [];
