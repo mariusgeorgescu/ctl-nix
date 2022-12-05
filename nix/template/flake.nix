@@ -9,29 +9,34 @@
   };
 
   outputs = { self, utils, ... }@inputs:
-    utils.apply-systems { inherit inputs; } ({ pkgs, system, ... }:
-      let
-        purs-nix = inputs.purs-nix {
-          inherit system;
-          overlays = [ inputs.la-ctl.lib ];
-        };
-        ps = purs-nix.purs
-          {
-            # Project dir (src, test)
-            dir = ./.;
-            # Dependencies
-            dependencies =
-              with purs-nix.ps-pkgs;
-              [
-                cardano-transaction-lib
-              ];
-            # FFI dependencies
-            # foreign.Main.node_modules = [];
+    # systems limited by purs-nix/ps-tools
+    let systems = [ "x86_64-linux" "x86_64-darwin" ]; in
+    utils.apply-systems
+      { inherit inputs; inherit systems; }
+      ({ pkgs, system, ... }:
+        let
+          la-ctl = inputs.la-ctl { inherit system; };
+          purs-nix = inputs.purs-nix {
+            inherit system;
+            overlays = [ la-ctl ];
           };
-      in
-      {
-        packages.default = ps.modules.Main.output { };
-        checks.default = self.packages.default;
-      });
+          ps = purs-nix.purs
+            {
+              # Project dir (src, test)
+              dir = ./.;
+              # Dependencies
+              dependencies =
+                with purs-nix.ps-pkgs;
+                [
+                  #cardano-transaction-lib
+                  aeson
+                ];
+              # FFI dependencies
+              # foreign.Main.node_modules = [];
+            };
+        in
+        {
+          packages.default = ps.modules.Main.output { };
+        });
 
 }

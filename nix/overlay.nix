@@ -1,5 +1,5 @@
 # this is a purs-nix overlay (not nixpkgs overlay)
-package-set-repo: ctl: pkgs: final: prev:
+package-set-repo: ctl: pkgs: self: super:
 let
   b = builtins;
   p = pkgs;

@@ -16,21 +16,22 @@
 
   outputs = { self, utils, ... }@inputs:
     let
+      # warning: unknown flake output 'lib' is a know issue
+      # it will be eventually standard on nix
+      __functor = _: { system }: import ./nix/overlay.nix
+        inputs.package-set-repo
+        inputs.ctl
+        inputs.nixpkgs.legacyPackages.${system};
       templates.default.path = ./nix/template;
       templates.default.description = "la-ctl template";
     in
-    { inherit templates; } // utils.apply-systems
+    { inherit __functor; inherit templates; } // utils.apply-systems
       { inherit inputs; }
       ({ pkgs, system, ... }:
         let
         in
         {
-          # warning: unknown flake output 'lib' is a know issue
-          # it will be eventually standard on nix
-          lib = import ./nix/overlay.nix
-            inputs.package-set-repo
-            inputs.ctl
-            pkgs;
+          #TODO: move CI test.sh to here
           #checks.template = (inputs.get-flake ./nix/template).checks.${system};
         });
 }
