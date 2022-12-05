@@ -18,7 +18,7 @@
     let
       # warning: unknown flake output 'lib' is a know issue
       # it will be eventually standard on nix
-      __functor = _: { system }: import ./nix/overlay.nix
+      __functor = _: { system }: import ./nix/purs-nix
         inputs.package-set-repo
         inputs.ctl
         inputs.nixpkgs.legacyPackages.${system};
