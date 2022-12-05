@@ -9,8 +9,8 @@
   };
 
   outputs = { self, utils, ... }@inputs:
-    # systems limited by purs-nix/ps-tools
-    let systems = [ "x86_64-linux" "x86_64-darwin" ]; in
+    # systems limited by LovelaceAcademy/purescript-affjax
+    let systems = [ "x86_64-linux" ]; in
     utils.apply-systems
       { inherit inputs; inherit systems; }
       ({ pkgs, system, ... }:
@@ -29,7 +29,7 @@
                 with purs-nix.ps-pkgs;
                 [
                   #cardano-transaction-lib
-                  aeson
+                  affjax
                 ];
               # FFI dependencies
               # foreign.Main.node_modules = [];
