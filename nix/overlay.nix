@@ -28,7 +28,7 @@ with packages; packages // {
   aeson = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/purescript-aeson.git";
-      rev = "85449440c264d5eedf1acbdf8649fc8eb035e50b";
+      rev = "ff1afd366aaab257063320a4acdbd594072f9037";
     };
     info = /package.nix;
   };
@@ -71,7 +71,7 @@ with packages; packages // {
   sequences = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/purescript-sequences";
-      rev = "e37a04e5b88e0cdc2bc92d32aaf281ed61f9fdb0";
+      rev = "391231db9e278fcb87c82245e6da22f776c1783a";
     };
     info = /package.nix;
   };
@@ -79,7 +79,7 @@ with packages; packages // {
   properties = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/purescript-properties.git";
-      rev = "69c73d0eeeea79f7a73ec18976fda89e404d7760";
+      rev = "4d8de7ffe18bd3997d05a19f3fbeef90aba9c81f";
     };
     info = /package.nix;
   };
@@ -87,7 +87,7 @@ with packages; packages // {
   lattice = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/purescript-lattice.git";
-      rev = "80f7411d1f51d033a3a1b2d2a15bac3e06e81e5c";
+      rev = "086c2f05fdbcc60c2e7b2927147b8518cdbe0e69";
     };
     info = /package.nix;
   };
@@ -109,7 +109,7 @@ with packages; packages // {
   medea = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/medea-ps.git";
-      rev = "1c34dbeba9534aaecb874fd17ede8dfe62923a92";
+      rev = "18dc4b42ddd0b2caf5f8c24c258b16f8bb15d3ce";
     };
     info = /package.nix;
   };
@@ -133,7 +133,7 @@ with packages; packages // {
     };
   };
 
-  bigints.src.flake.url = "github:LovelaceAcademy/purescript-bigints/1e7e8a260b3283307fa887be26300fb29604799a";
+  bigints.src.flake.url = "github:LovelaceAcademy/purescript-bigints/eb0349d2f8153b3d103e902064cc55316c0b8967";
 
-  affjax.src.flake.url = "github:LovelaceAcademy/purescript-affjax/c24e75155cf2b243472b6f163a7772290a603ed1";
+  affjax.src.flake.url = "github:LovelaceAcademy/purescript-affjax/1dd6aa0a0e47b83197a46eed4c35fe9cd6b3e59d";
 }
