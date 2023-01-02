@@ -758,6 +758,21 @@
         "type": "github"
       }
     },
+    "flake-utils_4": {
+      "locked": {
+        "lastModified": 1618217525,
+        "narHash": "sha256-WGrhVczjXTiswQaoxQ+0PTfbLNeOQM6M36zvLn78AYg=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c6169a2772643c4a93a0b5ac1c61e296cba68544",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "flat": {
       "flake": false,
       "locked": {
@@ -793,6 +808,21 @@
       }
     },
     "get-flake": {
+      "locked": {
+        "lastModified": 1644686428,
+        "narHash": "sha256-zkhYsURWFrvEZLkIoBeqFBzSu+cA2u5mo6M8vq9LN7M=",
+        "owner": "ursi",
+        "repo": "get-flake",
+        "rev": "703f15558daa56dfae19d1858bb3046afe68831a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ursi",
+        "repo": "get-flake",
+        "type": "github"
+      }
+    },
+    "getflake": {
       "locked": {
         "lastModified": 1644686428,
         "narHash": "sha256-zkhYsURWFrvEZLkIoBeqFBzSu+cA2u5mo6M8vq9LN7M=",
@@ -1987,8 +2017,10 @@
     "root": {
       "inputs": {
         "ctl": "ctl",
+        "getflake": "getflake",
         "nixpkgs": "nixpkgs_14",
-        "package-set-repo": "package-set-repo"
+        "package-set-repo": "package-set-repo",
+        "utils": "utils_5"
       }
     },
     "rust-analyzer-src": {
@@ -2208,6 +2240,24 @@
       "original": {
         "owner": "ursi",
         "ref": "8",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_5": {
+      "inputs": {
+        "flake-utils": "flake-utils_4"
+      },
+      "locked": {
+        "lastModified": 1658606827,
+        "narHash": "sha256-3kSWTDpV4+uApt/Xd0kv2m7TR1Y6A7SgYUeX86/qYuU=",
+        "owner": "ursi",
+        "repo": "flake-utils",
+        "rev": "faec5f7431da6747a69957a9cd65e35b5173e10a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ursi",
         "repo": "flake-utils",
         "type": "github"
       }
