@@ -31,7 +31,5 @@
         let
         in
         {
-          #TODO: move CI test.sh to here
-          #checks.template = (inputs.get-flake ./nix/template).checks.${system};
         });
 }
