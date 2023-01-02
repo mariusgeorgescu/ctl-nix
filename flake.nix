@@ -22,10 +22,8 @@
         inputs.package-set-repo
         inputs.ctl
         inputs.nixpkgs.legacyPackages.${system};
-      templates.default.path = ./nix/template;
-      templates.default.description = "ctl-nix template";
     in
-    { inherit __functor; inherit templates; } // utils.apply-systems
+    { inherit __functor; } // utils.apply-systems
       { inherit inputs; }
       ({ pkgs, system, ... }:
         let
