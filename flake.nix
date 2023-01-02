@@ -1,5 +1,5 @@
 {
-  description = "Optioned Cardano Transaction Lib backed by nix";
+  description = "Cardano transaction lib backed by nix";
 
   inputs =
     {
@@ -23,7 +23,7 @@
         inputs.ctl
         inputs.nixpkgs.legacyPackages.${system};
       templates.default.path = ./nix/template;
-      templates.default.description = "la-ctl template";
+      templates.default.description = "ctl-nix template";
     in
     { inherit __functor; inherit templates; } // utils.apply-systems
       { inherit inputs; }
