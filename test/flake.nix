@@ -47,7 +47,6 @@
             };
         in
         {
-          # TODO add ctl rev == self rev
           packages.default = ps.output { };
         });
 }
