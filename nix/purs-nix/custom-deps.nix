@@ -1,5 +1,140 @@
 # this is a purs-nix overlay (not nixpkgs overlay)
-package-set-repo: ctl: pkgs: self: super: with self; {
+package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
+
+  cardano-transaction-lib = {
+    # TODO find a way to reuse ctl to build cardano-transaction-lib overlay
+    #  it seems that we'll need a purs-nix api change for that
+    #src = ctl;
+    src.git = {
+      inherit (ctl.sourceInfo) rev;
+      repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
+    };
+    info = {
+      version = "2.0.0";
+      dependencies = [
+        aeson
+        aeson-helpers
+        aff
+        aff-promise
+        aff-retry
+        affjax
+        arraybuffer-types
+        arrays
+        bifunctors
+        bigints
+        checked-exceptions
+        console
+        const
+        contravariant
+        control
+        datetime
+        debug
+        effect
+        either
+        encoding
+        enums
+        exceptions
+        foldable-traversable
+        foreign
+        foreign-object
+        heterogeneous
+        http-methods
+        identity
+        integers
+        js-date
+        lattice
+        lists
+        math
+        maybe
+        medea
+        media-types
+        monad-logger
+        mote
+        newtype
+        node-buffer
+        node-child-process
+        node-fs
+        node-fs-aff
+        node-path
+        node-process
+        node-streams
+        nonempty
+        now
+        numbers
+        optparse
+        ordered-collections
+        orders
+        parallel
+        partial
+        posix-types
+        prelude
+        profunctor
+        profunctor-lenses
+        toppokki
+        quickcheck
+        quickcheck-combinators
+        quickcheck-laws
+        rationals
+        record
+        refs
+        safe-coerce
+        spec
+        spec-quickcheck
+        strings
+        stringutils
+        tailrec
+        text-encoding
+        these
+        transformers
+        tuples
+        typelevel
+        typelevel-prelude
+        uint
+        undefined
+        unfoldable
+        untagged-union
+        variant
+      ];
+      # TODO compare the bundle produced by purs-nix
+      #  using embeded w/o embeded runtime deps to test if there
+      #  are dups and decide if we keep the deps embeded
+      # TODO get all .js files and use their paths to generate foreigns
+      #  command used `grep -rl require src/{**/*,*}.js | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
+      foreign =
+        let
+          ffi = [
+            "BalanceTx.UtxoMinAda"
+            "Deserialization.FromBytes"
+            "Deserialization.Language"
+            "Deserialization.Transaction"
+            "Deserialization.UnspentOutput"
+            "Deserialization.WitnessSet"
+            "Plutip.PortCheck"
+            "Plutip.Utils"
+            "QueryM.UniqueId"
+            "Serialization.Address"
+            "Serialization.AuxiliaryData"
+            "Serialization.BigInt"
+            "Serialization.Hash"
+            "Serialization.MinFee"
+            "Serialization.NativeScript"
+            "Serialization.PlutusData"
+            "Serialization.PlutusScript"
+            "Serialization.WitnessSet"
+            "Types.BigNum"
+            "Types.Int"
+            "Types.TokenName"
+            "Base64"
+            "Hashing"
+            "JsWebSocket"
+            "Serialization"
+          ];
+          node_modules = npmlock2nix.v1.node_modules { src = ctl; } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
+    };
+  };
+
   # additional packages for CTL
   # TODO: automate the set generation using CTL input
   # pinned to match ctl arg
@@ -17,6 +152,7 @@ package-set-repo: ctl: pkgs: self: super: with self; {
     };
     info = {
       dependencies = [
+        aeson
         aff
         argonaut-codecs
         argonaut-core

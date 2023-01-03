@@ -8,21 +8,30 @@
       getflake.url = "github:ursi/get-flake";
 
       # TODO remove pinned to match github:LovelaceAcademy/purs-nix
-      ctl.url = "github:LovelaceAcademy/cardano-transaction-lib/790bd5963a5b3e4c231b83288c91f632a2d6101e";
+      ctl.url = "github:Plutonomicon/cardano-transaction-lib/30a410d1d80941e843f7f238e2b2b12c8114876d";
       # TODO find a way to get package-set-repo from ctl
       #  package-set-repo now is pinned to follow ctl /packages.dhall
       #  we need a way to extract this information from there
       package-set-repo.url = "github:purescript/package-sets/dffcbcfe9b35a3a826e4389fade3e2b28fb0c614";
       package-set-repo.flake = false;
+
+      npmlock2nix.url = "github:nix-community/npmlock2nix";
+      npmlock2nix.flake = false;
     };
 
-  outputs = { self, nixpkgs, utils, package-set-repo, ctl, ... }@inputs:
+  outputs = { self, nixpkgs, utils, package-set-repo, ctl, npmlock2nix, ... }@inputs:
     let
       # this export a lib with the override
-      __functor = _: { system }: import ./nix/purs-nix
-        package-set-repo
-        ctl
-        nixpkgs.legacyPackages.${system};
+      __functor = _: { system }:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          npmlock2nix' = import npmlock2nix { inherit pkgs; };
+        in
+        import ./nix/purs-nix
+          package-set-repo
+          ctl
+          pkgs
+          npmlock2nix';
     in
     { inherit __functor; } // utils.apply-systems
       {
@@ -30,9 +39,9 @@
         # TODO remove systems limited by the test
         systems = [ "x86_64-linux" ];
       }
-      ({ system, pkgs, ... }:
+      ({ system, ... }@ctx:
         let
-          package-set = import ./nix/package-set/generate.nix package-set-repo pkgs;
+          package-set = import ./nix/package-set/generate.nix package-set-repo ctx.pkgs;
         in
         {
           packages.package-set = package-set;

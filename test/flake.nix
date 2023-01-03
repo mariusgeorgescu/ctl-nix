@@ -40,18 +40,7 @@
               dependencies =
                 with purs-nix.ps-pkgs;
                 [
-                  #cardano-transaction-lib
-                  affjax
-                  bigints
-                  toppokki
-                  medea
-                  mote
-                  lattice
-                  properties
-                  sequences
-                  aeson-helpers
-                  aeson
-                  either
+                  cardano-transaction-lib
                 ];
               # FFI dependencies
               # foreign.Main.node_modules = [];
