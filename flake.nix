@@ -5,7 +5,6 @@
     {
       nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
       utils.url = "github:ursi/flake-utils";
-      getflake.url = "github:ursi/get-flake";
 
       # TODO remove pinned to match github:LovelaceAcademy/purs-nix
       ctl.url = "github:Plutonomicon/cardano-transaction-lib/30a410d1d80941e843f7f238e2b2b12c8114876d";
@@ -45,6 +44,5 @@
         in
         {
           packages.package-set = package-set;
-          checks = (inputs.getflake ./test).checks.${system};
         });
 }

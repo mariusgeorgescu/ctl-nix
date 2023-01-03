@@ -29,4 +29,5 @@ jobs:
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: |
         cd test
+        nix flake check --show-trace
         nix build --show-trace
