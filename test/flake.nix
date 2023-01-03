@@ -16,7 +16,7 @@
     utils.apply-systems
       {
         inputs = inputs // { ctl = ctl-flake; };
-        # TODO remove systems limited by purs-nix/ps-tools
+        # TODO remove systems limited by purs-nix
         systems = [ "x86_64-linux" "x86_64-darwin" ];
       }
       ({ system, ctl, ... }@ctx:
