@@ -4,7 +4,7 @@ let
   b = builtins;
   p = pkgs;
   l = p.lib;
-  package-set = import ./package-set.nix package-set-repo ctl p;
+  package-set = import ./package-set.nix;
   custom-deps = import ./custom-deps.nix package-set-repo ctl p;
 in
 l.composeExtensions package-set custom-deps
