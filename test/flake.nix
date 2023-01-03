@@ -59,6 +59,6 @@
         in
         {
           # TODO add ctl rev == self rev
-          checks.default = ps.output { };
+          packages.default = ps.output { };
         });
 }
