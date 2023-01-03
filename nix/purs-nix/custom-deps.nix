@@ -49,7 +49,7 @@ package-set-repo: ctl: pkgs: self: super: with self; {
   sequences = {
     src.git = {
       repo = "https://github.com/LovelaceAcademy/purescript-sequences";
-      rev = "391231db9e278fcb87c82245e6da22f776c1783a";
+      rev = "b9bc34b92c450bc7d38349062abe0b16b90d592d";
     };
     info = /package.nix;
   };

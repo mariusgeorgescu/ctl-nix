@@ -43,14 +43,14 @@
                   #cardano-transaction-lib
                   affjax
                   bigints
-                  #toppokki
-                  #medea
-                  #mote
-                  #lattice 
-                  #properties 
-                  #sequences 
-                  #aeson-helpers
-                  #aeson
+                  toppokki
+                  medea
+                  mote
+                  lattice
+                  properties
+                  sequences
+                  aeson-helpers
+                  aeson
                   either
                 ];
               # FFI dependencies
