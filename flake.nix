@@ -27,8 +27,8 @@
     { inherit __functor; } // utils.apply-systems
       {
         inherit inputs;
-        # TODO remove systems limited by test
-        systems = [ "x86_64-linux" "x86_64-darwin" ];
+        # TODO remove systems limited by the test
+        systems = [ "x86_64-linux" ];
       }
       ({ system, pkgs, ... }:
         let

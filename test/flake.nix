@@ -17,9 +17,13 @@
       {
         inputs = inputs // { ctl = ctl-flake; };
         # TODO remove systems limited by purs-nix
-        systems = [ "x86_64-linux" "x86_64-darwin" ];
+        systems = [ "x86_64-linux" ];
+        overlays = [
+          # override purescript compiler by CTL version
+          ctl-flake.inputs.ctl.overlays.purescript
+        ];
       }
-      ({ system, ctl, ... }@ctx:
+      ({ system, pkgs, ctl, ... }@ctx:
         let
           purs-nix = inputs.purs-nix {
             inherit system;
@@ -27,6 +31,9 @@
           };
           ps = purs-nix.purs
             {
+              # TODO find a way to define purescript compiler globally
+              #  so we don't need to bump this on each compiler update
+              purescript = pkgs.easy-ps.purs-0_14_5;
               # Project dir (src, test)
               dir = ./.;
               # Dependencies
