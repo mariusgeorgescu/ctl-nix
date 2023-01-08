@@ -226,11 +226,11 @@
     "cardano-configurations": {
       "flake": false,
       "locked": {
-        "lastModified": 1661149943,
-        "narHash": "sha256-x6M9zMacJDvBsmgjxRNVT+rPymgmQjOEs3e5TXdX5wk=",
+        "lastModified": 1655361562,
+        "narHash": "sha256-b/z5RSgqTMQpEUSD4nbrBAr86PcQs+n6EMtn/YPeyj4=",
         "owner": "input-output-hk",
         "repo": "cardano-configurations",
-        "rev": "303f3a3035c52eb753b533d53ef439c6b4cde9c9",
+        "rev": "08e6c0572d5d48049fab521995b29607e0a91a9e",
         "type": "github"
       },
       "original": {
@@ -652,21 +652,6 @@
         "owner": "Quid2",
         "repo": "flat",
         "rev": "ee59880f47ab835dbd73bea0847dab7869fc20d8",
-        "type": "github"
-      }
-    },
-    "getflake": {
-      "locked": {
-        "lastModified": 1644686428,
-        "narHash": "sha256-zkhYsURWFrvEZLkIoBeqFBzSu+cA2u5mo6M8vq9LN7M=",
-        "owner": "ursi",
-        "repo": "get-flake",
-        "rev": "703f15558daa56dfae19d1858bb3046afe68831a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ursi",
-        "repo": "get-flake",
         "type": "github"
       }
     },
@@ -1234,11 +1219,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1669597967,
-        "narHash": "sha256-R+2NaDkXsYkOpFOhmVR8jBZ77Pq55Z6ilaqwFLLn000=",
+        "lastModified": 1672997035,
+        "narHash": "sha256-DNaNjsGMRYefBTAxFIrVOB2ok477cj1FTpqnu/mKRf4=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "be9e3762e719211368d186f547f847737baad720",
+        "rev": "f1ffcf798e93b169321106a4aef79526a2b4bd0a",
         "type": "github"
       },
       "original": {
@@ -1561,7 +1546,6 @@
     "root": {
       "inputs": {
         "ctl": "ctl",
-        "getflake": "getflake",
         "nixpkgs": "nixpkgs_5",
         "npmlock2nix": "npmlock2nix",
         "package-set-repo": "package-set-repo",
