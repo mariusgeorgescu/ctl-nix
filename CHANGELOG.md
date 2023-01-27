@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/LovelaceAcademy/ctl-nix/compare/v1.0.0...v2.0.0) (2023-01-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** see CTL upstream for breaking changes
+
+### Features
+
+* **deps:** Bump CTL to v4.0.2 ([03e70e1](https://github.com/LovelaceAcademy/ctl-nix/commit/03e70e14e566676393f83007a4f1d9017288555c))
+
 ## 1.0.0 (2023-01-03)
 
 
