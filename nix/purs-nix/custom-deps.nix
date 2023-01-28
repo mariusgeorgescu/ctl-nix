@@ -1,12 +1,13 @@
 # this is a purs-nix overlay (not nixpkgs overlay)
-package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
+package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
 
   cardano-transaction-lib = {
     # TODO find a way to reuse ctl to build cardano-transaction-lib overlay
     #  it seems that we'll need a purs-nix api change for that
+    #  also applies to other inputs
     #src = ctl;
     src.git = {
-      inherit (ctl.sourceInfo) rev;
+      inherit (inputs.ctl.sourceInfo) rev;
       repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
     };
     info = {
@@ -102,17 +103,42 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
       #  using embeded w/o embeded runtime deps to test if there
       #  are dups and decide if we keep the deps embeded
       # TODO get all .js files and use their paths to generate foreigns
-      #  command used `grep -rl require src/{**/*,*}.js | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
+      #  command used `grep -rl --include "*.js" require src/ | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
+      #  command used for nested dependencies `spago install && grep -rl --include "*.js" require .spago/ | xargs -I _ sh -c "S=_; grep -H module \${S/js/purs}"`
       foreign =
         let
           ffi = [
-            "Ctl.Internal.ApplyArgs"
+            "Ctl.Internal.BalanceTx.UtxoMinAda"
             "Ctl.Internal.Base64"
-            "Ctl.Internal.Hashing"
+            "Ctl.Internal.Deserialization.FromBytes"
+            "Ctl.Internal.Deserialization.Keys"
+            "Ctl.Internal.Deserialization.Language"
+            "Ctl.Internal.Deserialization.Transaction"
+            "Ctl.Internal.Deserialization.UnspentOutput"
+            "Ctl.Internal.Deserialization.WitnessSet"
             "Ctl.Internal.JsWebSocket"
+            "Ctl.Internal.Plutip.PortCheck"
+            "Ctl.Internal.Plutip.Spawn"
+            "Ctl.Internal.Plutip.Utils"
+            "Ctl.Internal.QueryM.UniqueId"
+            "Ctl.Internal.Serialization.Address"
+            "Ctl.Internal.Serialization.AuxiliaryData"
+            "Ctl.Internal.Serialization.BigInt"
+            "Ctl.Internal.Serialization.Hash"
+            "Ctl.Internal.Serialization.MinFee"
+            "Ctl.Internal.Serialization.NativeScript"
+            "Ctl.Internal.Serialization.PlutusData"
+            "Ctl.Internal.Serialization.PlutusScript"
+            "Ctl.Internal.Serialization.WitnessSet"
+            "Ctl.Internal.Types.TokenName"
+            "Ctl.Internal.Types.BigNum"
+            "Ctl.Internal.Types.Int"
+            "Ctl.Internal.Wallet.Cip30.SignData"
+            "Ctl.Internal.ApplyArgs"
+            "Ctl.Internal.Hashing"
             "Ctl.Internal.Serialization"
           ];
-          node_modules = npmlock2nix.v1.node_modules { src = ctl; } + /node_modules;
+          node_modules = npmlock2nix.v1.node_modules { src = inputs.ctl; } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -168,7 +194,7 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
   bignumber = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-bignumber.git";
-      rev = "58c51448be23c05caf51cde45bb3b09cc7169447";
+      inherit (inputs.bignumber) rev;
     };
     info = {
       dependencies = [
@@ -185,6 +211,14 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
         uint
         # /endworkaround
       ];
+      foreign =
+        let
+          ffi = [
+            #"Data.BigNumber"
+          ];
+          node_modules = npmlock2nix.v1.node_modules { src = inputs.bignumber; } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
@@ -306,7 +340,7 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
     src.git = {
       repo = "https://github.com/firefrorefiddle/purescript-toppokki";
       ref = "mike/browserpages";
-      rev = "6983e07bf0aa55ab779bcef12df3df339a2b5bd9";
+      inherit (inputs.toppokki) rev;
     };
     info = {
       dependencies = [
@@ -318,13 +352,28 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
         node-buffer
         node-fs-aff
       ];
+
+      foreign =
+        let
+          p = pkgs.mkYarnModules {
+            pname = "purescript-toppokki-node_modules";
+            version = inputs.toppokki.shortRev;
+            yarnLock = inputs.toppokki + /yarn.lock;
+            packageJSON = inputs.toppokki + /package.json;
+          };
+          ffi = [
+            "Toppokki"
+          ];
+          node_modules = p + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
   noble-secp256k1 = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git";
-      rev = "710c15c48c5afae5e0623664d982a587ff2bd177";
+      inherit (inputs.noble-secp256k1) rev;
     };
     info = {
       dependencies =
@@ -339,7 +388,21 @@ package-set-repo: ctl: pkgs: npmlock2nix: self: super: with self; {
           # FIXME remove missing Data.ArrayBuffer.Types workaround
           arraybuffer-types
           # /endworkaround
+          # FIXME remove missing Data.UInt workaround
+          uint
+          # /endworkaround
         ];
+
+      foreign =
+        let
+          ffi = [
+            "Noble.Secp256k1.ECDSA"
+            "Noble.Secp256k1.Schnorr"
+            "Noble.Secp256k1.Utils"
+          ];
+          node_modules = npmlock2nix.v1.node_modules { src = inputs.noble-secp256k1; } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 }
