@@ -150,7 +150,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   aeson = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-aeson.git";
-      rev = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
+      inherit (inputs.aeson) rev;
     };
     info = {
       dependencies = [
@@ -188,6 +188,18 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
         uint
         untagged-union
       ];
+      foreign =
+        let
+          ffi = [
+            "Aeson"
+          ];
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "aeson-node_modules-" + inputs.aeson.shortRev;
+              src = inputs.aeson;
+            } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 

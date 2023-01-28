@@ -357,6 +357,23 @@
         "type": "github"
       }
     },
+    "aeson": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1671124839,
+        "narHash": "sha256-Vg0KqvzFegqK4YsJsV2CDR0nQBut+Thcmgb5Fwxy9+c=",
+        "owner": "mlabs-haskell",
+        "repo": "purescript-aeson",
+        "rev": "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mlabs-haskell",
+        "repo": "purescript-aeson",
+        "rev": "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5",
+        "type": "github"
+      }
+    },
     "bignumber": {
       "flake": false,
       "locked": {
@@ -10275,6 +10292,7 @@
     },
     "root": {
       "inputs": {
+        "aeson": "aeson",
         "bignumber": "bignumber",
         "ctl": "ctl",
         "nixpkgs": "nixpkgs_36",
