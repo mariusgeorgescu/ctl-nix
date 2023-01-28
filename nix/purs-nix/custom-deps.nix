@@ -339,6 +339,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   purescript-toppokki = {
     src.git = {
       repo = "https://github.com/firefrorefiddle/purescript-toppokki";
+      ref = "mike/browserpages";
       inherit (inputs.toppokki) rev;
     };
     info = {
