@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.0.0...v2.0.1) (2023-01-28)
+
+
+### Bug Fixes
+
+* missing FFI deps after upgrade to v4.0.2 ([0f68a6b](https://github.com/LovelaceAcademy/ctl-nix/commit/0f68a6b174a54b52a1e6623cdb99c88a5d43e44b))
+* re-add toppokki ref ([fa42e4f](https://github.com/LovelaceAcademy/ctl-nix/commit/fa42e4f006adb30c0b05d1e3d65fc822643e98cc))
+
 ## [2.0.0](https://github.com/LovelaceAcademy/ctl-nix/compare/v1.0.0...v2.0.0) (2023-01-27)
 
 
