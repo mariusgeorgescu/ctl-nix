@@ -374,6 +374,23 @@
         "type": "github"
       }
     },
+    "bigints": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1625461426,
+        "narHash": "sha256-IwXt6mncSo2Y61nShPWBgsKjTnle1WXKnO5mgU0zGnU=",
+        "owner": "purescript-contrib",
+        "repo": "purescript-bigints",
+        "rev": "d5151e04db7e18641fbb2b5892f4198b1cab5907",
+        "type": "github"
+      },
+      "original": {
+        "owner": "purescript-contrib",
+        "repo": "purescript-bigints",
+        "rev": "d5151e04db7e18641fbb2b5892f4198b1cab5907",
+        "type": "github"
+      }
+    },
     "bignumber": {
       "flake": false,
       "locked": {
@@ -10293,6 +10310,7 @@
     "root": {
       "inputs": {
         "aeson": "aeson",
+        "bigints": "bigints",
         "bignumber": "bignumber",
         "ctl": "ctl",
         "nixpkgs": "nixpkgs_36",

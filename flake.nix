@@ -26,6 +26,8 @@
       noble-secp256k1.flake = false;
       toppokki.url = "github:firefrorefiddle/purescript-toppokki/6983e07bf0aa55ab779bcef12df3df339a2b5bd9";
       toppokki.flake = false;
+      bigints.url = "github:purescript-contrib/purescript-bigints/d5151e04db7e18641fbb2b5892f4198b1cab5907";
+      bigints.flake = false;
     };
 
   outputs = { self, nixpkgs, utils, package-set-repo, npmlock2nix, ... }@inputs:

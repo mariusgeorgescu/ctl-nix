@@ -417,4 +417,31 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
+
+  bigints = {
+    src.git = {
+      repo = "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git";
+      inherit (inputs.bigints) rev;
+    };
+    info = {
+      dependencies =
+        [
+          integers
+          maybe
+          strings
+        ];
+      foreign =
+        let
+          ffi = [
+            "Data.BigInt"
+          ];
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "bigints-node_modules-" + inputs.aeson.shortRev;
+              src = inputs.bigints;
+            } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
+    };
+  };
 }
