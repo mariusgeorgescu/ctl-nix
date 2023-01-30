@@ -382,10 +382,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
             "Data.BigInt"
           ];
           node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "bigints-node_modules-" + inputs.aeson.shortRev;
-              src = inputs.bigints;
-            } + /node_modules;
+            { src = inputs.bigints; } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
