@@ -16,10 +16,13 @@
       npmlock2nix.url = "github:nix-community/npmlock2nix";
       npmlock2nix.flake = false;
 
+      # TODO remove purs-nix fork for users
+      #  our fork adds monorepo support this should be in the upstream 
+      purs-nix.url = "github:LovelaceAcademy/purs-nix/add-monorepo"; 
+
       # TODO find a way to get peer dependencies from ctl
       #  these inputs now is pinned to follow ctl /packages.dhall
-      aeson.url = "github:mlabs-haskell/purescript-aeson/9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
-      aeson.flake = false;
+      aeson.url = path:./nix/purs-nix/aeson;
       bignumber.url = "github:mlabs-haskell/purescript-bignumber/58c51448be23c05caf51cde45bb3b09cc7169447";
       bignumber.flake = false;
       noble-secp256k1.url = "github:mlabs-haskell/purescript-noble-secp256k1/710c15c48c5afae5e0623664d982a587ff2bd177";

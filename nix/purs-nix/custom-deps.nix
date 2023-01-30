@@ -147,61 +147,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   # additional packages for CTL
   # TODO: automate the set generation using CTL input
   # pinned to match ctl arg
-  aeson = {
-    src.git = {
-      repo = "https://github.com/mlabs-haskell/purescript-aeson.git";
-      inherit (inputs.aeson) rev;
-    };
-    info = {
-      dependencies = [
-        aff
-        argonaut
-        argonaut-codecs
-        argonaut-core
-        arrays
-        bifunctors
-        bigints
-        bignumber
-        const
-        control
-        effect
-        either
-        exceptions
-        foldable-traversable
-        foreign-object
-        integers
-        lists
-        maybe
-        mote
-        numbers
-        ordered-collections
-        partial
-        prelude
-        quickcheck
-        record
-        sequences
-        spec
-        strings
-        tuples
-        typelevel
-        typelevel-prelude
-        uint
-        untagged-union
-      ];
-      foreign =
-        let
-          ffi = [
-            "Aeson"
-          ];
-          node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "aeson-node_modules-" + inputs.aeson.shortRev;
-              src = inputs.aeson;
-            } + /node_modules;
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
-    };
-  };
+  aeson.src.flake.url = inputs.aeson;
 
   bignumber = {
     src.git = {
