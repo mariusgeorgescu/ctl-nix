@@ -420,7 +420,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
 
   bigints = {
     src.git = {
-      repo = "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git";
+      repo = "https://github.com/sharkdp/purescript-bigints";
       inherit (inputs.bigints) rev;
     };
     info = {
