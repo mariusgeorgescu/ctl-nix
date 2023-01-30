@@ -226,7 +226,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
       foreign =
         let
           ffi = [
-            #"Data.BigNumber"
+            "Data.BigNumber"
           ];
           node_modules = npmlock2nix.v1.node_modules { src = inputs.bignumber; } + /node_modules;
         in
