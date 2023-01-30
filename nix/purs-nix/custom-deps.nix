@@ -155,6 +155,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
       inherit (inputs.bignumber) rev;
     };
     info = {
+      version = "1.0.0";
       dependencies = [
         console
         effect
