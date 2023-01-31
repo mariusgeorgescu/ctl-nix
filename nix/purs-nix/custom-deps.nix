@@ -150,7 +150,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   aeson = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-aeson.git";
-      rev = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
+      inherit (inputs.aeson) rev;
     };
     info = {
       dependencies = [
@@ -188,6 +188,18 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
         uint
         untagged-union
       ];
+      foreign =
+        let
+          ffi = [
+            "Aeson"
+          ];
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "aeson-node_modules-" + inputs.aeson.shortRev;
+              src = inputs.aeson;
+            } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
@@ -214,9 +226,13 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
       foreign =
         let
           ffi = [
-            #"Data.BigNumber"
+            "Data.BigNumber"
           ];
-          node_modules = npmlock2nix.v1.node_modules { src = inputs.bignumber; } + /node_modules;
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "bignumber-node_modules-" + inputs.bignumber.shortRev;
+              src = inputs.bignumber;
+            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -356,7 +372,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
       foreign =
         let
           p = pkgs.mkYarnModules {
-            pname = "purescript-toppokki-node_modules";
+            pname = "toppokki-node_modules";
             version = inputs.toppokki.shortRev;
             yarnLock = inputs.toppokki + /yarn.lock;
             packageJSON = inputs.toppokki + /package.json;
@@ -392,7 +408,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
           uint
           # /endworkaround
         ];
-
       foreign =
         let
           ffi = [
@@ -400,7 +415,38 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
             "Noble.Secp256k1.Schnorr"
             "Noble.Secp256k1.Utils"
           ];
-          node_modules = npmlock2nix.v1.node_modules { src = inputs.noble-secp256k1; } + /node_modules;
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "noble-secp256k1-node_modules-" + inputs.noble-secp256k1.shortRev;
+              src = inputs.noble-secp256k1;
+            } + /node_modules;
+        in
+        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
+    };
+  };
+
+  bigints = {
+    src.git = {
+      repo = "https://github.com/sharkdp/purescript-bigints";
+      inherit (inputs.bigints) rev;
+    };
+    info = {
+      dependencies =
+        [
+          integers
+          maybe
+          strings
+        ];
+      foreign =
+        let
+          ffi = [
+            "Data.BigInt"
+          ];
+          node_modules = npmlock2nix.v1.node_modules
+            {
+              pname = "bigints-node_modules-" + inputs.bigints.shortRev;
+              src = inputs.bigints;
+            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
