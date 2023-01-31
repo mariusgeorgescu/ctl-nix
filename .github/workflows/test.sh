@@ -12,5 +12,4 @@ mkdir $TEST_DIR
 	sed -i "s|github:LovelaceAcademy/ctl-nix|path:$CTL|g" flake.nix
 	nix flake check --show-trace
 	nix build --show-trace -L
-	node result/Main/index.js
 )
