@@ -3,10 +3,11 @@
 
   inputs =
     {
-      nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
       utils.url = "github:ursi/flake-utils";
       # TODO remove pinned to match v4.0.2
       ctl.url = "github:Plutonomicon/cardano-transaction-lib/e3003b91d97ac02504f8b5e23657189b663d797b";
+      purs-nix.url = "github:purs-nix/purs-nix/ps-0.14";
+      nixpkgs.follows = "purs-nix/nixpkgs";
       # TODO find a way to get package-set-repo from ctl
       #  package-set-repo now is pinned to follow ctl /packages.dhall
       #  we need a way to extract this information from there
