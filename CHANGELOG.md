@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.1.0](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.0.1...v2.1.0) (2023-01-31)
+
+
+### Features
+
+* add aeson as a internal flake packag ([03634d7](https://github.com/LovelaceAcademy/ctl-nix/commit/03634d751527df4f552843005f2225a2aa9967b9))
+* add purs-nix and nixpkgs inputs following ps-0.14 ([e4a7552](https://github.com/LovelaceAcademy/ctl-nix/commit/e4a75526bb283d41b532a1e3d78da8e11e6894ee))
+
+
+### Bug Fixes
+
+* add bignumber missing version ([c372bec](https://github.com/LovelaceAcademy/ctl-nix/commit/c372bec58d3db557c444f0052492ed987a79462b))
+* add missing bigints FFI ([9c51c2a](https://github.com/LovelaceAcademy/ctl-nix/commit/9c51c2af22bdf2b29197ca09852e46012687f8b9))
+* incorrect bigints repo ([13ebc22](https://github.com/LovelaceAcademy/ctl-nix/commit/13ebc220efca5e0d2367dd1c23f42c9081021823))
+* incorrect pkg name ([2dbc657](https://github.com/LovelaceAcademy/ctl-nix/commit/2dbc657dba2fc180a92743ea3a77d761bc0800b3))
+* incorrect var name ([9409f35](https://github.com/LovelaceAcademy/ctl-nix/commit/9409f357d942668ba0e04f9b6d96bd0d73d4cf13))
+* missing aeson ffi ([e770d4e](https://github.com/LovelaceAcademy/ctl-nix/commit/e770d4edb30896ecec1a04d8225c452861024802))
+* missing ffi ([974c4cd](https://github.com/LovelaceAcademy/ctl-nix/commit/974c4cde2676bdb45b23047886d001cb6a634532))
+* missing node_modules on ffi folders ([5b94fbb](https://github.com/LovelaceAcademy/ctl-nix/commit/5b94fbbcf2331132f32e59073a1751184de12063))
+
 ## [2.0.1](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.0.0...v2.0.1) (2023-01-28)
 
 
