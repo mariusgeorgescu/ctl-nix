@@ -1,6 +1,6 @@
 # ctl-nix
 
-Cardano transaction lib backed by nix
+[Cardano transaction lib](https://github.com/Plutonomicon/cardano-transaction-lib) backed by nix
 
 ## Usage
 
