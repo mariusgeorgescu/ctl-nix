@@ -1,6 +1,10 @@
 # this is a purs-nix overlay (not nixpkgs overlay)
-package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
-
+package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self;
+let
+  # FIXME we should rely on node_modules from ctl-scaffhold
+  node_modules = npmlock2nix.v1.node_modules { src = inputs.ctl; } + /node_modules;
+in
+{
   cardano-transaction-lib = {
     # TODO find a way to reuse ctl to build cardano-transaction-lib overlay
     #  it seems that we'll need a purs-nix api change for that
@@ -99,14 +103,14 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
         untagged-union
         variant
       ];
-      # TODO compare the bundle produced by purs-nix
-      #  using embeded w/o embeded runtime deps to test if there
-      #  are dups and decide if we keep the deps embeded
-      # TODO get all .js files and use their paths to generate foreigns
-      #  command used `grep -rl --include "*.js" require src/ | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
-      #  command used for nested dependencies `spago install && grep -rl --include "*.js" require .spago/ | xargs -I _ sh -c "S=_; grep -H module \${S/js/purs}"`
       foreign =
         let
+          # TODO compare the bundle produced by purs-nix
+          #  using embeded w/o embeded runtime deps to test if there
+          #  are dups and decide if we keep the deps embeded
+          # TODO get all .js files and use their paths to generate foreigns
+          #  command used `grep -rl --include "*.js" require src/ | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
+          #  command used for nested dependencies `spago install && grep -rl --include "*.js" require .spago/ | xargs -I _ sh -c "S=_; grep -H module \${S/js/purs}"`
           ffi = [
             "Ctl.Internal.BalanceTx.UtxoMinAda"
             "Ctl.Internal.Base64"
@@ -138,7 +142,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
             "Ctl.Internal.Hashing"
             "Ctl.Internal.Serialization"
           ];
-          node_modules = npmlock2nix.v1.node_modules { src = inputs.ctl; } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -150,7 +153,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   aeson = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-aeson.git";
-      inherit (inputs.aeson) rev;
+      rev = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
     };
     info = {
       dependencies = [
@@ -193,11 +196,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
           ffi = [
             "Aeson"
           ];
-          node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "aeson-node_modules-" + inputs.aeson.shortRev;
-              src = inputs.aeson;
-            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -206,7 +204,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   bignumber = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-bignumber.git";
-      inherit (inputs.bignumber) rev;
+      rev = "58c51448be23c05caf51cde45bb3b09cc7169447";
     };
     info = {
       dependencies = [
@@ -228,11 +226,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
           ffi = [
             "Data.BigNumber"
           ];
-          node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "bignumber-node_modules-" + inputs.bignumber.shortRev;
-              src = inputs.bignumber;
-            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -371,6 +364,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
 
       foreign =
         let
+          # Missing in CTL, but available in ctl-scaffold
           p = pkgs.mkYarnModules {
             pname = "toppokki-node_modules";
             version = inputs.toppokki.shortRev;
@@ -389,7 +383,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   noble-secp256k1 = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-noble-secp256k1.git";
-      inherit (inputs.noble-secp256k1) rev;
+      rev = "710c15c48c5afae5e0623664d982a587ff2bd177";
     };
     info = {
       dependencies =
@@ -415,11 +409,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
             "Noble.Secp256k1.Schnorr"
             "Noble.Secp256k1.Utils"
           ];
-          node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "noble-secp256k1-node_modules-" + inputs.noble-secp256k1.shortRev;
-              src = inputs.noble-secp256k1;
-            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
@@ -428,7 +417,7 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
   bigints = {
     src.git = {
       repo = "https://github.com/sharkdp/purescript-bigints";
-      inherit (inputs.bigints) rev;
+      rev = "d5151e04db7e18641fbb2b5892f4198b1cab5907";
     };
     info = {
       dependencies =
@@ -442,11 +431,6 @@ package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self; {
           ffi = [
             "Data.BigInt"
           ];
-          node_modules = npmlock2nix.v1.node_modules
-            {
-              pname = "bigints-node_modules-" + inputs.bigints.shortRev;
-              src = inputs.bigints;
-            } + /node_modules;
         in
         pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };

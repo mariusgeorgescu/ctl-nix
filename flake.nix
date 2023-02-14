@@ -19,16 +19,8 @@
 
       # TODO find a way to get peer dependencies from ctl
       #  these inputs now is pinned to follow ctl /packages.dhall
-      aeson.url = "github:mlabs-haskell/purescript-aeson/9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
-      aeson.flake = false;
-      bignumber.url = "github:mlabs-haskell/purescript-bignumber/58c51448be23c05caf51cde45bb3b09cc7169447";
-      bignumber.flake = false;
-      noble-secp256k1.url = "github:mlabs-haskell/purescript-noble-secp256k1/710c15c48c5afae5e0623664d982a587ff2bd177";
-      noble-secp256k1.flake = false;
       toppokki.url = "github:firefrorefiddle/purescript-toppokki/6983e07bf0aa55ab779bcef12df3df339a2b5bd9";
       toppokki.flake = false;
-      bigints.url = "github:purescript-contrib/purescript-bigints/d5151e04db7e18641fbb2b5892f4198b1cab5907";
-      bigints.flake = false;
     };
 
   outputs = { self, nixpkgs, utils, package-set-repo, npmlock2nix, ... }@inputs:
