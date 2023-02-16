@@ -11,11 +11,19 @@ in
     #  also applies to other inputs
     #src = ctl;
     src.git = {
-      inherit (inputs.ctl.sourceInfo) rev;
+      inherit (inputs.ctl) rev;
       repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
     };
     info = {
-      version = "4.0.2";
+      version = "4.0.2-${inputs.ctl.shortRev}";
+      install = ''
+        mkdir $out
+        for entry in $src/src/*; do
+          link=$(basename "$entry")
+          ln -s "$entry" "$out/$link"
+        done
+        ln -s ${node_modules} $out/node_modules
+      '';
       dependencies = [
         aeson
         argonaut-codecs
@@ -103,47 +111,6 @@ in
         untagged-union
         variant
       ];
-      foreign =
-        let
-          # TODO compare the bundle produced by purs-nix
-          #  using embeded w/o embeded runtime deps to test if there
-          #  are dups and decide if we keep the deps embeded
-          # TODO get all .js files and use their paths to generate foreigns
-          #  command used `grep -rl --include "*.js" require src/ | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
-          #  command used for nested dependencies `spago install && grep -rl --include "*.js" require .spago/ | xargs -I _ sh -c "S=_; grep -H module \${S/js/purs}"`
-          ffi = [
-            "Ctl.Internal.BalanceTx.UtxoMinAda"
-            "Ctl.Internal.Base64"
-            "Ctl.Internal.Deserialization.FromBytes"
-            "Ctl.Internal.Deserialization.Keys"
-            "Ctl.Internal.Deserialization.Language"
-            "Ctl.Internal.Deserialization.Transaction"
-            "Ctl.Internal.Deserialization.UnspentOutput"
-            "Ctl.Internal.Deserialization.WitnessSet"
-            "Ctl.Internal.JsWebSocket"
-            "Ctl.Internal.Plutip.PortCheck"
-            "Ctl.Internal.Plutip.Spawn"
-            "Ctl.Internal.Plutip.Utils"
-            "Ctl.Internal.QueryM.UniqueId"
-            "Ctl.Internal.Serialization.Address"
-            "Ctl.Internal.Serialization.AuxiliaryData"
-            "Ctl.Internal.Serialization.BigInt"
-            "Ctl.Internal.Serialization.Hash"
-            "Ctl.Internal.Serialization.MinFee"
-            "Ctl.Internal.Serialization.NativeScript"
-            "Ctl.Internal.Serialization.PlutusData"
-            "Ctl.Internal.Serialization.PlutusScript"
-            "Ctl.Internal.Serialization.WitnessSet"
-            "Ctl.Internal.Types.TokenName"
-            "Ctl.Internal.Types.BigNum"
-            "Ctl.Internal.Types.Int"
-            "Ctl.Internal.Wallet.Cip30.SignData"
-            "Ctl.Internal.ApplyArgs"
-            "Ctl.Internal.Hashing"
-            "Ctl.Internal.Serialization"
-          ];
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
