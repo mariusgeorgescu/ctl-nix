@@ -15,7 +15,7 @@ in
       repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
     };
     info = {
-      version = "4.0.2-${inputs.ctl.shortRev}";
+      version = "4.0.2";
       install = ''
         mkdir $out
         for entry in $src/src/*; do
