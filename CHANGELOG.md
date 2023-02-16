@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.1](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.1.0...v2.1.1) (2023-02-16)
+
+
+### Bug Fixes
+
+* add purs-nix/purs-nix[#44](https://github.com/LovelaceAcademy/ctl-nix/issues/44) patch to allow node_modules import ([d618e37](https://github.com/LovelaceAcademy/ctl-nix/commit/d618e375f8ca628eb21c0a5d9fefd9ea1eb46338))
+* conflicting FFI deps ([ade8175](https://github.com/LovelaceAcademy/ctl-nix/commit/ade81757fc466316e7897f4917972cb059b876ae))
+* incorrect version error ([1bc5234](https://github.com/LovelaceAcademy/ctl-nix/commit/1bc52345287f0c4ea2fcc39ee020f12761ae46c3))
+
 ## [2.1.0](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.0.1...v2.1.0) (2023-01-31)
 
 
