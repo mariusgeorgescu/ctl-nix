@@ -6,6 +6,8 @@
       utils.url = "github:ursi/flake-utils";
       # TODO remove pinned to match v4.0.2
       ctl.url = "github:Plutonomicon/cardano-transaction-lib/e3003b91d97ac02504f8b5e23657189b663d797b";
+      # TODO move to upstream purs-nix
+      #  depends on purs-nix/purs-nix#44
       purs-nix.url = "github:LovelaceAcademy/purs-nix/ctl-nix";
       nixpkgs.follows = "purs-nix/nixpkgs";
       # TODO find a way to get package-set-repo from ctl
