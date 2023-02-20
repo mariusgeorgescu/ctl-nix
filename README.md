@@ -5,5 +5,5 @@
 ## Usage
 
 ```bash
-nix flake init -t github:LovelaceAcademy/nix-templates#ctl
+nix flake init -t github:LovelaceAcademy/nix-templates#ctl-full
 ```
