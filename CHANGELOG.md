@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.2](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.1.1...v2.1.2) (2023-02-25)
+
+
+### Bug Fixes
+
+* missing node_modules on purs-nix compile ([1e2348e](https://github.com/LovelaceAcademy/ctl-nix/commit/1e2348e4570f0c26e9c41a35555f3ac81a848cf7))
+
 ## [2.1.1](https://github.com/LovelaceAcademy/ctl-nix/compare/v2.1.0...v2.1.1) (2023-02-16)
 
 
