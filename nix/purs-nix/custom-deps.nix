@@ -2,7 +2,7 @@
 package-set-repo: inputs: pkgs: npmlock2nix: self: super: with self;
 let
   # FIXME we should rely on node_modules from ctl-scaffhold
-  node_modules = npmlock2nix.v1.node_modules { src = inputs.ctl; } + /node_modules;
+  node_modules = npmlock2nix.v1.node_modules { src = inputs.ctl; };
 in
 {
   cardano-transaction-lib = {
@@ -15,15 +15,8 @@ in
       repo = "https://github.com/Plutonomicon/cardano-transaction-lib.git";
     };
     info = {
+      foreign = node_modules;
       version = "4.0.2";
-      install = ''
-        mkdir $out
-        for entry in $src/src/*; do
-          link=$(basename "$entry")
-          ln -s "$entry" "$out/$link"
-        done
-        ln -s ${node_modules} $out/node_modules
-      '';
       dependencies = [
         aeson
         argonaut-codecs
@@ -123,6 +116,7 @@ in
       rev = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
     };
     info = {
+      foreign = node_modules;
       dependencies = [
         aff
         argonaut
@@ -158,13 +152,6 @@ in
         uint
         untagged-union
       ];
-      foreign =
-        let
-          ffi = [
-            "Aeson"
-          ];
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
@@ -174,6 +161,7 @@ in
       rev = "58c51448be23c05caf51cde45bb3b09cc7169447";
     };
     info = {
+      foreign = node_modules;
       dependencies = [
         console
         effect
@@ -188,13 +176,6 @@ in
         uint
         # /endworkaround
       ];
-      foreign =
-        let
-          ffi = [
-            "Data.BigNumber"
-          ];
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
@@ -353,6 +334,7 @@ in
       rev = "710c15c48c5afae5e0623664d982a587ff2bd177";
     };
     info = {
+      foreign = node_modules;
       dependencies =
         [
           aff
@@ -369,15 +351,6 @@ in
           uint
           # /endworkaround
         ];
-      foreign =
-        let
-          ffi = [
-            "Noble.Secp256k1.ECDSA"
-            "Noble.Secp256k1.Schnorr"
-            "Noble.Secp256k1.Utils"
-          ];
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 
@@ -387,19 +360,13 @@ in
       rev = "d5151e04db7e18641fbb2b5892f4198b1cab5907";
     };
     info = {
+      foreign = node_modules;
       dependencies =
         [
           integers
           maybe
           strings
         ];
-      foreign =
-        let
-          ffi = [
-            "Data.BigInt"
-          ];
-        in
-        pkgs.lib.attrsets.genAttrs ffi (_: { inherit node_modules; });
     };
   };
 }
