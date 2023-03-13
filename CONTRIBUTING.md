@@ -14,6 +14,6 @@ We follow conventional commit [specification](https://www.conventionalcommits.or
 - `nix build .#package-set --impure`
 - `cp result nix/package-set/default.nix`
 - update `nix/purs-nix/custom-deps.nix` according CTL `{spago/packages}.dhall`
-- `cd test && nix flake check && nix build`
+- `./.github/workflows/test.sh` (you'll need to upgrade `LovelaceAcademy/nix-templates` ctl-full case of template braking changes)
 
 ## Commit format
