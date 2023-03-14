@@ -4,8 +4,8 @@
   inputs =
     {
       utils.url = "github:ursi/flake-utils";
-      # TODO remove pinned to match v4.0.2
-      ctl.url = "github:Plutonomicon/cardano-transaction-lib/e3003b91d97ac02504f8b5e23657189b663d797b";
+      # TODO remove pinned to match v5.0.0
+      ctl.url = "github:Plutonomicon/cardano-transaction-lib/205f25b591656b825186d2187fdcba1e00c3df87";
       # TODO move to upstream purs-nix
       #  depends on purs-nix/purs-nix#44
       purs-nix.url = "github:LovelaceAcademy/purs-nix/ctl-nix";
