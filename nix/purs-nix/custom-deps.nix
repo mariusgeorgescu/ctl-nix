@@ -16,23 +16,25 @@ in
     };
     info = {
       foreign = node_modules;
-      version = "4.0.2";
+      version = "5.0.0";
       dependencies = [
         aeson
-        argonaut-codecs
         aff
         aff-promise
         aff-retry
         affjax
         argonaut
+        argonaut-codecs
         arraybuffer-types
         arrays
         avar
         bifunctors
         bigints
+        bignumber
         checked-exceptions
         console
         control
+        crypto
         datetime
         debug
         effect
@@ -43,6 +45,7 @@ in
         foldable-traversable
         foreign
         foreign-object
+        formatters
         functions
         gen
         heterogeneous
@@ -84,6 +87,7 @@ in
         quickcheck
         quickcheck-combinators
         quickcheck-laws
+        random
         rationals
         record
         refs
@@ -103,6 +107,8 @@ in
         unfoldable
         untagged-union
         variant
+        web-html
+        web-storage
       ];
     };
   };
@@ -113,7 +119,7 @@ in
   aeson = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-aeson.git";
-      rev = "9fd6e8241881d4b8ed9dcb6a80b166d3683f87b5";
+      rev = "bfd8f4dcd0522a076320f9dc710c24817438e02e";
     };
     info = {
       foreign = node_modules;
@@ -158,7 +164,7 @@ in
   bignumber = {
     src.git = {
       repo = "https://github.com/mlabs-haskell/purescript-bignumber.git";
-      rev = "58c51448be23c05caf51cde45bb3b09cc7169447";
+      rev = "705923edd892a3397b90d28ce7db9a7181dcd599";
     };
     info = {
       foreign = node_modules;
@@ -350,22 +356,6 @@ in
           # FIXME remove missing Data.UInt workaround
           uint
           # /endworkaround
-        ];
-    };
-  };
-
-  bigints = {
-    src.git = {
-      repo = "https://github.com/sharkdp/purescript-bigints";
-      rev = "d5151e04db7e18641fbb2b5892f4198b1cab5907";
-    };
-    info = {
-      foreign = node_modules;
-      dependencies =
-        [
-          integers
-          maybe
-          strings
         ];
     };
   };
