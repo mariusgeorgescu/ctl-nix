@@ -9,6 +9,7 @@ jobs:
     - uses: cachix/install-nix-action@v20
       with:
         extra_nix_config: |
+          accept-flake-config = true
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
     - uses: cachix/cachix-action@v12
       with:
@@ -22,6 +23,7 @@ jobs:
     - uses: cachix/install-nix-action@v20
       with:
         extra_nix_config: |
+          accept-flake-config = true
           access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
     - uses: cachix/cachix-action@v12
       with:
