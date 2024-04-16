@@ -22,6 +22,8 @@ in
         # TODO get all .js files and use their paths to generate foreigns
         #  command used `grep -rl --include "*.js" import src/ | xargs -I _ sh -c "S=_; grep module \${S/js/purs} | cut -d ' ' -f2"`
         #  command used for nested dependencies `spago install && grep -rl --include "*.js" import .spago/ | xargs -I _ sh -c "S=_; grep -H module \${S/js/purs}"`
+        "Cardano.Wallet.Cip30" = ffi;
+        "Cardano.Wallet.Cip30.TypeSafe" = ffi;
         "Ctl.Internal.BalanceTx.UtxoMinAda" = ffi;
         "Ctl.Internal.Deserialization.FromBytes" = ffi;
         "Ctl.Internal.Deserialization.Keys" = ffi;
